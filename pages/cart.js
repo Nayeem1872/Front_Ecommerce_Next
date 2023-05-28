@@ -1,10 +1,12 @@
 import Button from "@/components/Button";
 import { CartContext } from "@/components/CartContext";
 import Center from "@/components/Center";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
 import Table from "@/components/Table";
 import axios from "axios";
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 
@@ -13,7 +15,12 @@ const ColumnsWrapper = styled.div`
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   margin-top: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
+
 const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
@@ -38,13 +45,30 @@ const ProductImageBox = styled.div`
     max-height: 80px;
   }
 `;
-const QuantityLabel = styled.span `
-padding: 10px;
+
+const QuantityLabel = styled.span`
+  padding: 10px;
 `;
+
 const CityHolder = styled.div`
-display: flex;
-gap: 5px;
+  display: flex;
+  gap: 5px;
 `;
+
+const Continue = styled.p`
+  display: flex;
+  a {
+    text-decoration: none;
+    font-weight: 100;
+    color: black;
+  }
+`;
+const CashOn = styled.div`
+margin-top: 10px;
+
+`;
+
+
 
 export default function CartPage() {
   const { cartProducts,addProduct, removeProduct,clearCart } = useContext(CartContext);
@@ -95,6 +119,16 @@ export default function CartPage() {
       window.location = response.data.url
     }
   }
+  async function goToCash(){
+    const response = await axios.post('/api/cashOnDelivery',{
+      name,email,city,postalCode,address,mobile,cartProducts,
+    });
+
+    console.log(response)
+    // if(response.data.url){
+    //   window.location = response.data.url
+    // }
+  }
 
 
 
@@ -111,11 +145,17 @@ export default function CartPage() {
         <Center>
           <ColumnsWrapper>
             <Box>
-              <h1>Thanks for your order!</h1>
-              <p>We will email you when your order will be sent.</p>
+              <h1>Thanks for shopping with us!</h1>
+              <p>Your order has been placed successfully.</p>
+              <Continue >
+              <Link href='/'>Continue Shopping →</Link> 
+
+              </Continue>
+             
             </Box>
           </ColumnsWrapper>
         </Center>
+        
       </>
     );
   }
@@ -168,7 +208,7 @@ export default function CartPage() {
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>Total:৳{total}</td>
+                    <td>Total :৳ {total}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -191,13 +231,22 @@ export default function CartPage() {
               <Input type="number" placeholder="Mobile Number"value={mobile} name="mobile" onChange={ev=>setMobile(ev.target.value)} />
              
               <Button black block onClick={goToPayment}>
-                Continue to payment
+                Continue to payment online
               </Button>
+             <CashOn>
+
+              <Button  block onClick={goToCash}>
+                Cash on delivery
+              </Button>
+
+             </CashOn>
+
               
             </Box>
           )}
         </ColumnsWrapper>
       </Center>
+      <Footer />
     </>
   );
 }

@@ -15,22 +15,25 @@ import { styled } from "styled-components";
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: .8fr 1.2fr;
-  }
   gap: 40px;
   margin: 40px 0;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
 `;
+
 const Price = styled.div`
-font-size: 1.3rem;
-font-weight: bold;
-
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #555;
 `;
-const Pb = styled.div`
-display: flex;
-gap:20px;
-align-items:center;
 
+const Pb = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: #888;
 `;
 
 

@@ -6,6 +6,7 @@ import {mongooseConnect} from "@/lib/mongoose";
 import ProductsGrid from "@/components/ProductsGrid";
 import { Product } from "@/models/Products";
 import Title from "@/components/Title";
+import Footer from "@/components/Footer";
 
 export default function ProductsPage({products}) {
   return (
@@ -14,7 +15,9 @@ export default function ProductsPage({products}) {
       <Center>
         <Title>All products</Title>
         <ProductsGrid products={products} />
+
       </Center>
+      <Footer />
     </>
   );
 }
