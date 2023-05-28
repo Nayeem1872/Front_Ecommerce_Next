@@ -59,7 +59,7 @@ const FooterLink = styled.a`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 30vh; /* Make the main container take up the full viewport height */
+   min-height: 40vh; /* Make the main container take up the full viewport height */
 `;
 const ContentWrapper = styled.div`
   flex: 1 0 auto; /* Allow the content to grow and fill the remaining vertical space */
@@ -72,7 +72,7 @@ const AllRightsReserved = styled.p`
 `;
 
 
-export default function (){
+export default function Footer (){
   const currentYear = new Date().getFullYear();
     return(
         <>

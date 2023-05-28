@@ -45,10 +45,11 @@ const FlyingButtonWrapper = styled.div`
     z-index: 5;
     animation: fly 1s;
     border-radius: 10px;
+    
   }
 `;
 
-export default function FlyingButton(props) {
+const FlyingButton = (props)=> {
   const { addProduct } = useContext(CartContext);
   const imgRef = useRef();
   function sendImageToCart(ev) {
@@ -83,3 +84,6 @@ export default function FlyingButton(props) {
     </>
   );
 }
+FlyingButton.displayName = "FlyingButton";
+
+export default FlyingButton;

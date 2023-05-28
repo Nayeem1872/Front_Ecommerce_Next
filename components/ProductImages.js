@@ -6,8 +6,8 @@ const Image = styled.img`
     max-height: 100%;
   `;
 const BigImage = styled.img`
-  max-width: 100%;
-  max-height: 200px;
+   max-width: 250;
+  max-height: 500px;
 `;
 const ImageButtons = styled.div`
     display: flex;

@@ -7,6 +7,11 @@ import BarsIcon from "./icons/Bars";
 import SearchIcon from "@/components/icons/SearchIcon";
 
 const StyleHeader = styled.header`
+/* position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; */
+  z-index: 200;
     background-color: #222;
 
 `;
@@ -92,9 +97,9 @@ const SideIcons = styled.div`
 
 
 
-export default function header(){
-const {cartProducts} = useContext (CartContext)
-const [mobileNavActive,setMobileNavActive] = useState(false);
+export default function Header(){
+  const { cartProducts } = useContext(CartContext);
+  const [mobileNavActive, setMobileNavActive] = useState(false);
 
 
     return (

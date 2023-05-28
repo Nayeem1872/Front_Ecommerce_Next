@@ -15,7 +15,7 @@ const ProductWrapper = styled.div`
 
 const Box = styled(Link)`
   background-color: #fff;
-  padding: 10px;
+  padding: 20px;
   height: 180px;
   text-align: center;
   display: flex;

@@ -9,6 +9,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
+import Image from "next/image";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -25,6 +26,25 @@ const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+`;
+
+const Message = styled.p`
+  font-size: 1.2rem;
+  color: #666;
+`;
+
+const SVGImage = styled.img`
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
 `;
 
 const ProductInfoCell = styled.td`
@@ -100,7 +120,7 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();
     }
-  }, []);
+  }, [clearCart]);
 
 
   function more (id){
@@ -123,7 +143,8 @@ export default function CartPage() {
     const response = await axios.post('/api/cashOnDelivery',{
       name,email,city,postalCode,address,mobile,cartProducts,
     });
-
+    setIsSuccess(true)
+    clearCart()
     console.log(response)
     // if(response.data.url){
     //   window.location = response.data.url
@@ -145,8 +166,8 @@ export default function CartPage() {
         <Center>
           <ColumnsWrapper>
             <Box>
-              <h1>Thanks for shopping with us!</h1>
-              <p>Your order has been placed successfully.</p>
+            <Heading>Thanks for shopping with us!</Heading>
+          <Message>Your order has been placed successfully.</Message>
               <Continue >
               <Link href='/'>Continue Shopping →</Link> 
 
@@ -188,10 +209,10 @@ export default function CartPage() {
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr>
+                    <tr key={product.id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                        <img src={product.images[0]} alt="" />
+                        <img src={product.images[0]} alt="Image" />
                         </ProductImageBox>
                        
                         {product.title}

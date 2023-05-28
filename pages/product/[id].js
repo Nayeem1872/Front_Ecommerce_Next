@@ -13,10 +13,12 @@ import { styled } from "styled-components";
 
 
 const ColWrapper = styled.div`
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr;
+  flex-direction: column;
   gap: 40px;
-  margin: 40px 0;
+  margin-top: 50px ;
+  
 
   @media screen and (min-width: 768px) {
     grid-template-columns: 0.8fr 1.2fr;
@@ -31,9 +33,16 @@ const Price = styled.div`
 
 const Pb = styled.div`
   display: flex;
-  gap: 20px;
-  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+  
   color: #888;
+  margin-bottom: 40px;
+`;
+const PA = styled.div`
+display: flex;
+gap: 20px;
+
 `;
 
 
@@ -49,18 +58,22 @@ export default function ProductPage({product}){
             <WhiteBox>
                 <ProductImages images={product.images} />
             </WhiteBox>
-            <div>
+            
+            <Pb>
             <Title>{product.title}</Title>
 
             <p>{product.description}</p>
-            <Pb>
+            <PA>
+
             <Price>Price:৳{product.price}</Price>
 
 <Button primary onClick={()=>addProduct(product._id)}> <CartIcon/> Add to cart</Button>
 
+            </PA>
+
             </Pb>
             
-            </div>
+            
             
            
             

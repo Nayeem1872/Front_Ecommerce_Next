@@ -55,7 +55,7 @@ export default function NewProducts({ products }) {
         <Title>All Products</Title>
       <ProductsGrid>
         {products?.length > 0 &&
-          products.map((product) => <AllProductBox {...product} />)}
+          products.map((product) => <AllProductBox key={product.id} {...product} />)}
       </ProductsGrid>
       <ShowAllSquare href={"/products"}>
                   Show all Products &rarr;
